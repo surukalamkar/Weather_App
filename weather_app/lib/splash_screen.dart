@@ -11,7 +11,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -32,9 +31,13 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Container(
             decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/background_img.jpg'),
-                fit: BoxFit.cover,
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(52, 147, 195, 1),
+                  Color.fromRGBO(255, 255, 255, 0.8),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
             ),
           ),
@@ -57,21 +60,20 @@ class _SplashScreenState extends State<SplashScreen> {
                 Text(
                   "We show weather for you",
                   style: GoogleFonts.abrilFatface(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 170),
+                const SizedBox(height: 200),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(150, 45),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
-                      
                     ),
-                    backgroundColor:const Color.fromARGB(249, 157, 196, 219),
+                    backgroundColor: const Color.fromARGB(249, 157, 196, 219),
                   ),
                   onPressed: () {
                     setState(() {

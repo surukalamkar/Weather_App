@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:weather_app/weather_modelclass.dart';
+import 'package:weather_app/weatherscreen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,7 +51,7 @@ class _HomescreenState extends State<HomePage> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromRGBO(100, 167, 201, 1),
+              Color.fromRGBO(52, 147, 195, 1),
               Color.fromRGBO(255, 255, 255, 0.8),
             ],
             begin: Alignment.topLeft,
@@ -59,7 +60,7 @@ class _HomescreenState extends State<HomePage> {
         ),
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 20),
+              const EdgeInsets.only(top: 60, left: 30, right: 20, bottom: 20),
           child: Column(
             children: [
               Row(
@@ -79,7 +80,7 @@ class _HomescreenState extends State<HomePage> {
                       ),
                       border: Border.all(
                         width: 1,
-                        color: Colors.grey,
+                        color:Color.fromARGB(255, 190, 219, 226), 
                       ),
                     ),
                     child: TextField(
@@ -113,123 +114,90 @@ class _HomescreenState extends State<HomePage> {
               if (isLoading)
                 const CircularProgressIndicator()
               else
-                Container(
-                  height: 230,
-                  width: 350,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color.fromARGB(102, 93, 172, 228),
-                    // color: const Color.fromARGB(0, 3, 46, 77),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromRGBO(141, 132, 132, 1),
-                          spreadRadius: 2,
-                          blurRadius: 2),
-                    ],
-                    border: Border.all(
-                      width: 0.5,
-                      color: Colors.grey,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const Weatherscreen(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 170,
+                    width: 350,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color.fromARGB(102, 93, 172, 228),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color.fromRGBO(141, 132, 132, 1),
+                            spreadRadius: 3,
+                            blurRadius: 4),
+                      ],
+                      border: Border.all(
+                        width: 0.4,
+                        color: const Color.fromARGB(255, 227, 229, 231),
+                        
+                      ),
                     ),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, top: 30),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${locationData['name'] ?? 'Weather Not Found'}",
-                              style: GoogleFonts.abrilFatface(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                              ),
-                            ),
-                            Text(
-                              "${locationData['region']}",
-                              style: GoogleFonts.abrilFatface(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 50,
-                            ),
-                            Text(
-                              "${locationData['country']}",
-                              style: GoogleFonts.abrilFatface(
-                                fontSize: 19,
-                                fontWeight: FontWeight.w500,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                const SizedBox(
-                                  height: 10,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, top: 30),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${locationData['name'] ?? 'Weather Not Found'}",
+                                style: GoogleFonts.abrilFatface(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
                                 ),
-                                Text(
-                                  "${locationData['lat']} °C / ",
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w500,
-                                    color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
-                                  ),
+                              ),
+                              Text(
+                                "${locationData['region']}",
+                                style: GoogleFonts.abrilFatface(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
                                 ),
-                                Text(
-                                  "${locationData['lon']} °C",
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w500,
-                                    color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
-                                  ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "${locationData['country']}",
+                                style: GoogleFonts.abrilFatface(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
                                 ),
-                              ],
-                            ),
-                          ],
+                              ),
+                             
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 22, top: 50),
-                        child: Column(
-                          children: [
-                            Text(
-                              "${currentData['temp_c']} °C",
-                              style: GoogleFonts.abrilFatface(
-                                fontSize: 28,
-                                fontWeight: FontWeight.w500,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
+                        Container(
+                          margin: const EdgeInsets.only(left: 25, top: 50),
+                          child: Column(
+                            children: [
+                              Text(
+                                "${currentData['temp_c']} °C",
+                                style: GoogleFonts.abrilFatface(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 35),
-                            Row(
-                              children: [
-                                Text(
-                                  "${currentData['condition']['text']}",
-                                  style: GoogleFonts.abrilFatface(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                    color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
-                                  ),
-                                ),
-                                Image.network(
-                                  "https:${currentData['condition']['icon']}",
-                                  height: 70,
-                                  width: 70,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
-                            )
-                          ],
+                              const SizedBox(height: 35),
+                             
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               const SizedBox(
@@ -247,8 +215,6 @@ class _HomescreenState extends State<HomePage> {
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
                 ),
-                overflow: TextOverflow.clip,
-                textScaler: const TextScaler.linear(1.2),
               )
             ],
           ),
