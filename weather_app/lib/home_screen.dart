@@ -60,7 +60,7 @@ class _HomescreenState extends State<HomePage> {
         ),
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 60, left: 30, right: 20, bottom: 20),
+              const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 20),
           child: Column(
             children: [
               Row(
@@ -80,7 +80,7 @@ class _HomescreenState extends State<HomePage> {
                       ),
                       border: Border.all(
                         width: 1,
-                        color:Color.fromARGB(255, 190, 219, 226), 
+                        color:const Color.fromARGB(255, 190, 219, 226), 
                       ),
                     ),
                     child: TextField(

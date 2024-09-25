@@ -121,7 +121,7 @@ class _WeatherscreenState extends State<Weatherscreen> {
                     RotationTransition(
                       turns: const AlwaysStoppedAnimation(10 / 360),
                       child: Image.network(
-                        currentData['condition']['icon'],
+                        "https:${currentData['condition']['icon']}",
                         height: 150,
                         width: 150,
                       ),
